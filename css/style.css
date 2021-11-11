@@ -1,0 +1,64 @@
+body {
+    background-color: #11ce98;
+}
+
+#timer {
+    padding-top: 1%;
+    text-align: center;
+    align-content: center;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 3.6em;
+    color: whitesmoke;
+    margin-bottom: 2%;
+}
+
+.matchSide {
+    align-content: center;
+    padding-left: 45%;
+    padding-right: 45%;
+    padding-bottom: 3%;
+}
+
+.boardSide {
+    align-content: center;
+    padding-left: 35%;
+    padding-right: 35%;
+}
+
+#board {
+    width: 100%;
+    border: solid #366380;
+    background-color: #366380;
+    /* border: solid #2E8C83;
+    background-color: #2E8C83; */
+    border-radius: 10px;
+    border-spacing: 0.6rem;
+}
+
+.boardCell {
+    border-radius: 5px;
+    text-align: center;
+    background-color: white;
+    padding: calc(10% - 0.4rem);
+}
+
+.empty {
+    border-radius: 5px;
+    text-align: center;
+    background-color: #366380;
+}
+
+#match {
+    width: 100%;
+    border: solid #366380;
+    background-color: #366380;
+    border-radius: 10px;
+    border-spacing: 0.4rem;
+}
+
+.matchCell {
+    border-radius: 3px;
+    text-align: center;
+    background-color: white;
+    padding: 12.5%;
+}

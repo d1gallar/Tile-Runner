@@ -1,14 +1,19 @@
-class StopWatch {
+export default class StopWatch {
     constructor(){
         this.time = 0; // current time
+        this.format = "00:00.00"; // formatted string
         this.running = false; // whether the timer is on
     }
 
+    //Returns the formatted string
+    getFormat(){ return this.format }
+
     //Resets the stop watch
-    reset(){
+    reset(linkElement = null){
         this.running = false;
         this.time = 0;
-        document.getElementById("demo").innerHTML = this.toString(this.time);
+        if(linkElement) linkElement.innerHTML = "00:00.00";
+        this.format = "00:00.00";
     }
 
     // Stops the stop watch
@@ -17,15 +22,17 @@ class StopWatch {
     }
 
     // Starts the stop watch
-    start(){ 
-        this.running = true; 
+    start(linkElement=null){ 
         let milsec = 0;
-        let format = 
+        this.running = true;
         setInterval(() => {
             milsec += 10;
             if(this.running === true){
                 this.time += 1000;
-                document.getElementById("demo").innerHTML = this.toString(this.time);
+                this.format = this.toString(this.time);
+                if(linkElement !== null) {
+                    linkElement.innerHTML = this.format;
+                }
             }
         },10);
     }
@@ -46,9 +53,3 @@ class StopWatch {
         return `${min}:${sec}.${ms}`;
     }
 }
-
-let timer = new StopWatch();
-document.getElementById("start").onclick = () =>{ timer.start(); } 
-document.getElementById("stop").onclick = () =>{ timer.stop(); }
-document.getElementById("reset").onclick = () => {timer.reset();}
-// setTimeout(()=>{timer.stop()}, 5000);

@@ -1,13 +1,13 @@
-const ColorTheme = require('./colorTheme'); 
+// const ColorTheme = require('./colorTheme');
+import ColorTheme from "./colorTheme.js";
 
 const MAX_TILE = 4;
 const TOTAL_TILES = 25;
 const BOARD_SIZE = 5;
 const MAX_COLORS = 6;
-const MATCH_SIZE = 3;
 const EMPTY_TILE = ' ';
 
-class Board {
+export default class Board {
     
     constructor(){
         this.board = null;
@@ -16,22 +16,13 @@ class Board {
     }
 
     //Returns the current board
-    getBoard(){ return this.board;  }
-
-    //Creates a randomly generated 9 x 9 board that the player has to match
-    createMatch(){
-        let colorSet = this.createColorSet();
-        let match = [];
-        for(let i = 0; i < MATCH_SIZE; i++){
-            let row = [];
-            for(let j = 0; j < MATCH_SIZE; j++){
-                let c = Math.floor(Math.random() * colorSet.length);
-                row.push(colorSet[c]);
-                colorSet.splice(c,1);
+    getBoard(){ 
+        if(this.board === null){
+            if(board === null){
+                return console.log(new Error("Board has not been created!"))
             }
-            match.push(row);
         }
-        return match;
+        return this.board;  
     }
 
     //Fills the board with all the colored tiles
@@ -80,7 +71,3 @@ class Board {
     // Prints the board out to the console
     print(){ console.log(this.board)}
 }
-
-let board = new Board();
-console.log(board.createMatch());
-board.print();
