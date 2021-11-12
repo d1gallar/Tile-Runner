@@ -1,5 +1,5 @@
-const ColorTheme = require('./colorTheme');
-// import ColorTheme from "./colorTheme.js";
+// const ColorTheme = require('./colorTheme');
+import ColorTheme from "./colorTheme.js";
 
 const MAX_TILE = 4;
 const TOTAL_TILES = 25;
@@ -7,8 +7,8 @@ const BOARD_SIZE = 5;
 const MAX_COLORS = 6;
 const EMPTY_TILE = 'EMPTY';
 
-class Board {
-// export default class Board {
+// class Board {
+export default class Board {
     
     constructor(){
         this.board = null;
@@ -106,45 +106,78 @@ class Board {
         }
         
         if(empty !== null){
-            console.log(this.board[x])
-            let horizontal;
-            console.log(empty,y)
-            if(empty >= y){
-                horizontal = row.splice(y, empty);
-                console.log("ge",horizontal)
-                let curr = horizontal.pop();
-                horizontal.unshift(curr);
-                this.board[x] = [...row,...horizontal]
-            } else {
-                let start = [...row].splice(0, empty)
-                let inner = [...row].splice(empty,y-1);
-                let end = [...row].splice(y+1,row.length)
+            // console.log(row, {empty: empty, y: y})
+            if(empty > y && empty-1 === y) {
+                let emptyCell = row[empty];
+                row[empty] = row[y];
+                row[y] = emptyCell;
+                this.board[x] = row;
+                // console.log(row, "single: left left")
+            } else if (y >= empty && empty+1 === y){
+                let emptyCell = row[empty];
+                row[empty] = row[y];
+                row[y] = emptyCell;
+                this.board[x] = row;
+                // console.log(row,"single: right right")
+            } else if(empty > y && empty-1 !== y){
+                let start = [...row].splice(0,y)
+                let inner = [...row].splice(y,empty);
+                if(y === 0) inner = [...row].splice(y,empty+1);
+                let end = [...row].splice(empty+1,BOARD_SIZE)
+                let curr = inner.pop();         
+                inner.unshift(curr);
+                this.board[x] = [...start, ...inner,...end];
+                // console.log(this.board[x],"group: left left")
+            } else if (y >= empty && empty+1 !== y){
+                let start = [...row].splice(0,empty);
+                let inner = [...row].splice(empty,y+1);
+                let end = [...row].splice(y+1,BOARD_SIZE);
+                if(empty === 1 && y === 3) inner = [...row].splice(empty,y);
                 let curr = inner.shift();
                 inner.push(curr);
                 this.board[x] = [...start, ...inner,...end];
+                // console.log(this.board[x],"group: right right")
             }
-            console.log(empty,[y,x],color)
         } else {
             let transpose = this.transpose([...this.board]);
             let col = transpose[y];
             for(let i = 0; i < col.length; i++){
                 if(col[i] === EMPTY_TILE) empty = i;
             }
-            let vertical;
-            if(empty > x){
-                vertical = col.splice(x, empty);
-                let curr = vertical.pop();
-                vertical.unshift(curr);
-                transpose[y] = [...col,...vertical];
-                
-            } else{
-                vertical = col.splice(x+1, empty);
-                let curr = vertical.shift();
-                vertical.push(curr);
-                transpose[y] = [...vertical, ...col];
+            // console.log(col, {empty: empty, x: x})
+            if(empty > x && empty-1 === x){
+                let emptyCell = col[empty];
+                col[empty] = col[x];
+                col[x] = emptyCell;
+                transpose[y] = col;
+                // console.log(col, "single: left up")
+            } else if(x >= empty && empty+1 === x){
+                let emptyCell = col[empty];
+                col[empty] = col[x];
+                col[x] = emptyCell;
+                transpose[y] = col;
+                // console.log(col, "single: left down")
+            } else if(empty > x  && empty-1 !== x){
+                let start = [...col].splice(0,x)
+                let inner = [...col].splice(x,empty);
+                if(x === 0) inner = [...col].splice(x,empty+1);
+                let end = [...col].splice(empty+1,BOARD_SIZE)
+                let curr = inner.pop();         
+                inner.unshift(curr);
+                transpose[y] = [...start, ...inner,...end];
+                // console.log(transpose[y], "group: up left")
+            } else if(x >= empty && empty+1 !== x){
+                let start = [...col].splice(0,empty)
+                let inner = [...col].splice(empty,x+1);
+                let end = [...col].splice(x+1,BOARD_SIZE)
+                if(empty === 1 && x === 3) inner = [...col].splice(empty,x)
+                let curr = inner.shift();
+                inner.push(curr);
+                transpose[y] = [...start, ...inner,...end];
+                // console.log(transpose[y],"group: down right")
             }
             this.board = this.transpose(transpose);
-            console.log(empty,[y,x],color)
+            // console.log(empty,[y,x],color)
         }
         return this.board;
     }
@@ -208,22 +241,43 @@ class Board {
     print(){ console.log(this.board)}
 }
 
-let board = new Board();
-board.swapCell([4,4],[4,0]);
-board.print();
-// vertical
-// board.moveCell([4,3])
-// board.moveCell([4,2])
-// board.moveCell([4,1])
-// board.moveCell([4,0])
+// let board = new Board();
 
-// horizontal
+// left slide: vertical [tested]
+// board.swapCell([4,4],[3,4]);
+// board.print();
 // board.moveCell([0,4])
 // board.moveCell([1,4])
 // board.moveCell([2,4])
 // board.moveCell([3,4])
-board.moveCell([4,1])
+// board.moveCell([4,4]) 
 
-board.print();
-// console.log(board.moveCell([3,4]))
+// right slide: vertical [tested]
+// board.print();
+// board.moveCell([0,4])
+// board.moveCell([1,4])
+// board.moveCell([2,4])
+// board.moveCell([3,4])
+
+// left slide: horizontal [tested]
+// board.swapCell([4,4],[4,4]);
+// board.print();
+// board.moveCell([4,0])
+// board.moveCell([4,1])
+// board.moveCell([4,2])
+// board.moveCell([4,3])
+
+// right slide: horizontal [tested]
+// board.swapCell([4,4],[4,0]);
+// board.print();
+// board.moveCell([4,1])
+// board.moveCell([4,2])
+// board.moveCell([4,3])
+// board.moveCell([4,4])
+
+// board.swapCell([4,4],[4,1]);
+// board.print();
+// board.moveCell([4,2])
+// 1 e 2 3 4 -> 1 2 e 3 4
+
 // board.print();

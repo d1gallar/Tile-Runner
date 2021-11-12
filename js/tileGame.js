@@ -33,14 +33,18 @@ class TileGame {
     //Checks if the player has reached matched all colors in the 3 x 3 grid.
     isFinished(){
         let board = this.game.getBoard();
-
-        for(let i = 1; i <= MATCH_SIZE; i++){
-            for(let j = 1; j <= MATCH_SIZE; j++){
-                if(this.match[i-1][j-1] != board[i][j])  {
+        let center = [[ board[1][1], board[1][2], board[1][3] ],
+                        [ board[2][1], board[2][2], board[2][3] ],
+                        [ board[3][1], board[3][2], board[3][3] ]];
+        // console.log("not finished",this.match, center);
+        for(let i = 0; i < MATCH_SIZE; i++){
+            for(let j = 0; j < MATCH_SIZE; j++){
+                if(this.match[i][j] != center[i][j])  {
                     return false;
                 }
             }
         }
+        // console.log("finished",this.match, center);
         return true;
     }
 
@@ -83,7 +87,6 @@ class TileGame {
                 if(board[i][j] === "EMPTY"){
                     rows[c].className = "boardCell empty";
                     rows[c].style = "";
-                    // console.log(board,i,j)
                 } else {
                     rows[c].className = "boardCell";
                     rows[c].style.backgroundColor = board[i][j];
@@ -103,34 +106,44 @@ class TileGame {
             let y = Math.floor(i / 5);
 
             cell.addEventListener('click', () =>{
-                console.log(cell,x,y)
-                this.game.moveCell([x,y]);
+                // console.log(cell,x,y)
+                this.game.moveCell([y,x]);
                 this.displayBoard();
             });
             i++;
         })
     }
 
+    // Forces the game to a win
+    forceWin(){
+        let board = this.game.getBoard();
+        let center = [  [ board[1][1], board[1][2], board[1][3] ],
+                        [ board[2][1], board[2][2], board[2][3] ],
+                        [ board[3][1], board[3][2], board[3][3] ]];
+        this.match = center;
+        this.displayMatch();
+    }
+
     //Starts a new game by creating a new board and starting a new timer
     start(){
         this.game = new Board();
         this.match = this.generateMatch();
-        this.inProgress = !this.isFinished();
-        this.displayMatch();
-        this.displayBoard();
-        
         this.timer = new StopWatch();
         let timerElement = document.getElementById("timer");
         this.timer.start(timerElement);
-        
-        while(this.inProgress){
+
+        this.displayMatch();
+        this.displayBoard();
+
+        let interval = setInterval(()=>{
             this.updateBoard();
-            this.inProgress = this.isFinished();
-        }
-  
-            
-        // console.log(this.timer.getFormat(), this.inProgress, this.match)
-        // this.timer.stop();
+            // this.forceWin();
+            if(this.isFinished()){
+                console.log("Game won!")
+                this.timer.stop();
+                clearInterval(interval);
+            }
+        },10)
     }
 
 }
