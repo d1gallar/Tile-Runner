@@ -1,8 +1,9 @@
 const DEFAULT_COLORS = ["#0C9AF2", "#A199BF", "#04BFAD", "#F29C50", "#F25C5C", "#EEEEEE"];
 const MAX_COLORS = 6;
-const EMPTY_COLOR = '';
+const EMPTY_COLOR = "EMPTY";
 
-export default class ColorTheme {
+module.exports = class ColorTheme {
+// export default class ColorTheme {
     constructor(){
         this.colors = DEFAULT_COLORS;
     }

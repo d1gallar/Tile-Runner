@@ -79,10 +79,36 @@ class TileGame {
         let c = 0;
         for(let i = 0; i < board.length; i++){
             for(let j = 0; j < board.length; j++){
-                rows[c].style.backgroundColor = board[i][j];
+                
+                if(board[i][j] === "EMPTY"){
+                    rows[c].className = "boardCell empty";
+                    rows[c].style = "";
+                    // console.log(board,i,j)
+                } else {
+                    rows[c].className = "boardCell";
+                    rows[c].style.backgroundColor = board[i][j];
+                }
                 c++;
             }
         }
+    }
+
+    //Updates the board and then displays it onto the screen
+    updateBoard(){
+        let board = this.game.getBoard();
+        let htmlBoard = document.querySelectorAll(".boardCell");
+        let i = 0;
+        htmlBoard.forEach(cell =>{
+            let x = i % 5;
+            let y = Math.floor(i / 5);
+
+            cell.addEventListener('click', () =>{
+                console.log(cell,x,y)
+                this.game.moveCell([x,y]);
+                this.displayBoard();
+            });
+            i++;
+        })
     }
 
     //Starts a new game by creating a new board and starting a new timer
@@ -98,8 +124,7 @@ class TileGame {
         this.timer.start(timerElement);
         
         while(this.inProgress){
-            
-
+            this.updateBoard();
             this.inProgress = this.isFinished();
         }
   
