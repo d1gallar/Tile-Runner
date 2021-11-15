@@ -82,7 +82,8 @@ export default class Board {
             new Error('Empty cell was not found in the board.'));
     }
 
-    //Moves the cell horizontally or vertically and returns the new board
+    //Moves the cell horizontally or vertically and returns true 
+    // if the move was successful and false otherwise
     moveCell(pos){
         if(!(pos instanceof Array)){
             return console.log(
@@ -94,7 +95,7 @@ export default class Board {
                 "Positions should be [x,y].!"))
         }
         
-        if(!this.canMove(pos)) return;
+        if(!this.canMove(pos)) return false;
         
         let [x,y] = pos;
         let color = this.board[x][y];
@@ -179,7 +180,7 @@ export default class Board {
             this.board = this.transpose(transpose);
             // console.log(empty,[y,x],color)
         }
-        return this.board;
+        return true;
     }
 
     //Takes in a cell position [x,y] and checks whether the user can move it

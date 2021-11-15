@@ -1,0 +1,3 @@
+.boardCell
+border-radius: 3rem;
+text-align: center;
