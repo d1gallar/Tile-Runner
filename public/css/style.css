@@ -1,0 +1,264 @@
+body {
+        background-color: #11ce98;
+}
+
+.container{
+        display: block;
+        width: 100%;
+}
+
+#timer {
+        padding-top: 1%;
+        text-align: center;
+        align-content: center;
+        font-family: 'Fira Sans', sans-serif;
+        font-size: 3.6em;
+        color: whitesmoke;
+        margin-bottom: 2%;
+}
+
+#board {
+        position: absolute;
+        left: 50%;
+        margin-left: -13.25rem;
+        width: 26.5rem;
+        background-color: #366380;
+        top: 64%;
+        margin-top:-13.75rem;
+        border-radius: 1rem;
+        border-spacing: 0.6rem;
+        padding: 0.2rem;
+}
+
+.boardCell {
+        border-radius: .8rem;
+        text-align: center;
+        padding: calc(10% - 0.4rem);
+}
+
+.empty {
+        border-radius: 5px;
+        text-align: center;
+        background-color: #366380;
+}
+
+#match {
+        position: absolute;
+        top: 25.5%;
+        left: 50%;
+        margin-top: -3.75rem;
+        margin-left: -3.75rem;
+        width: 7.5rem;
+        background-color: #366380;
+        border-radius: .5rem;
+        border-spacing: 0.4rem;
+        padding: 0.2rem;
+}
+
+.matchCell {
+        border-radius: 0.2rem;
+        text-align: center;
+        background-color: white;
+        padding: 12.5%;
+}
+
+.title {
+        display: block;
+        font-size: 4.8rem;
+        color: white;
+        letter-spacing: -1px;
+        font-family: 'Josefin Sans', sans-serif;
+        padding-bottom: 2rem;
+}
+
+.menuButton {
+        border-width: 0.2rem;
+        border-radius: 10px;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 2.1rem;
+        color: white;
+        width: 25rem;
+        background-color: #366380;
+        border-color: #366380;
+        border-collapse: collapse;
+        border-style: solid;
+        padding: 1.3rem 2rem .8rem 2rem;
+        margin-top: 2.8rem;
+}
+
+.menuContainer{
+        display: inline-flexbox;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+        padding-top: 5rem;
+}
+
+.menuButton:hover {
+        display: inline-block;
+        background-color: #366380;
+        box-shadow: 0px 5px rgba(32, 32, 32, 0.904);
+}
+
+.menuButton:active {
+        display: inline-block;
+        background-color: #366380;
+        box-shadow: 0px 2px rgba(32, 32, 32, 0.904);
+        transform: translate(0px, 5px);
+}
+
+#counter {
+        position: absolute;
+        left: 45%;
+        margin-left: 3rem;
+        bottom: 50%;
+        margin-bottom: 2rem;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 7rem;
+        color: white;
+        text-align: center;
+        align-content: center;
+}
+
+.finished {
+        text-align: center;
+        align-content: center;
+        font-family: 'Fira Sans', sans-serif;
+        font-size: 4em;
+        color: whitesmoke;
+        position: absolute;
+        top: 1%;
+        left: 50%;
+        margin-left: -7.8rem;
+        opacity: 0;
+}
+
+.joinDiv {
+        display: inline-flexbox;
+        align-content: center;
+        justify-content: center;
+}
+
+.joinDiv h2 {
+        font-family: 'Fira Sans', sans-serif;
+        color: white;
+        font-size: 2.8em;
+        text-align: center; 
+        margin: 0;
+        padding: 5rem 0 5rem 0;
+}
+
+.joinDiv form {
+        display: inline-block;
+        background-color: rgb(255, 255, 255);
+        border-radius: 4px;
+        box-shadow: rgb(0 0 0 / 15%) 0px 2px 4px;
+        padding: 1.5rem 1.5rem;
+        box-sizing: border-box;
+}
+
+.roomInput {
+        padding: 1rem;
+        font-family: sans-serif;
+        font-size: 1rem;
+        text-align: left;
+        border: white; 
+        display: block;
+        width: 20rem;
+        border-spacing: 1rem;
+        font-family: "Josefin Sans", sans-serif; 
+        margin-bottom: 1.5rem;
+        text-transform:uppercase;
+        border: 2px solid #1a2735;
+        border-radius: 5px;
+}
+
+.createDiv {
+        display: inline-flexbox;
+        align-content: center;
+        justify-content: center;
+}
+
+.createDiv h1 {
+        font-family: 'Fira Sans', sans-serif;
+        font-size: 7rem;
+        letter-spacing: 2px; 
+        padding: 4.5rem 0;
+        color: white;
+        text-align: center; 
+}
+
+.createDiv h2{
+        font-family: 'Fira Sans', sans-serif;
+        color: white;
+        font-size: 3.6em;
+        text-align: center; 
+}
+
+.createDiv h3 {
+        font-family: 'Fira Sans', sans-serif; 
+        color: white;
+        font-size: 2.3rem; 
+        text-align: center; 
+        padding-top: 2rem;
+        margin-block:0;
+}
+
+#roomSubmit {
+        width: 100%;
+        margin: 0px;
+        border: 0px;
+        cursor: pointer;
+        display: inline-block;
+        box-shadow: rgb(0 0 0 / 25%) 0px -4px inset;
+        background: #1a2735;
+        color: white;
+        border-radius: 4px;
+        font-family: "Josefin Sans", sans-serif;
+        font-size: 1rem;
+        text-align: center;
+        min-width: 48px;
+        min-height: 48px;
+        padding: 0px 16px 4px;
+        position: relative;
+        line-height: 0.875rem;
+}
+
+#cancelRoom {
+        background-color: transparent;
+        border: none;
+        position: absolute;
+        top: 4%;
+        left: 3%;
+}
+
+.roomWarning {
+        bottom: 0%;
+        width: 100%;
+        height: 3rem;
+        margin-left: -5rem;
+        position: absolute;
+        background-color: red;
+        display: none;
+}
+.animateWarning {
+        animation: roomWarning 3.5s ease forwards;
+}
+
+.roomWarning span {
+        font-size: 2rem; 
+        padding:.5rem .5rem;
+}
+
+.roomWarning p{
+        font-family: "Josefin Sans", sans-serif;
+        font-size: 1rem;
+        height: 100%;
+        color: white;
+        display: inline-block;
+        vertical-align: middle;
+        margin-block-end: 0em;
+}
+
+.material-icons.md-24 { font-size: 4rem; }
+.material-icons.md-light {color: white;}

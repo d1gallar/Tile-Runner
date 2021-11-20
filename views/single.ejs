@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <%- include('partials') %>
+    <body style="margin: 2rem 2rem;">
+        <div id="countContainer" style="display: none">
+            <p id="counter">3</p>
+        </div>
+        <div id="game" style="display: none; height: 42vh;">
+            <div>
+                <h1 class="finished">Finished!</h1>
+                <h1 id="timer" display="none">00:00.00</h1>
+            </div>
+            <div class="matchSide" display="none">
+                <table id="match">
+                    <tbody id="matchBody">
+                        <tr class="ROW1">
+                            <td class="matchCell"></td>
+                            <td class="matchCell"></td>
+                            <td class="matchCell"></td>
+                        </tr>
+                        <tr class="ROW2">
+                            <td class="matchCell"></td>
+                            <td class="matchCell"></td>
+                            <td class="matchCell"></td>
+                        </tr>
+                        <tr class="ROW3">
+                            <td class="matchCell"></td>
+                            <td class="matchCell"></td>
+                            <td class="matchCell"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> 
+            <div class="boardSide">
+                <table id="board" display="none">
+                    <tr class="ROW1">
+                        <td class="boardCell" id="1"></td>
+                        <td class="boardCell" id="2"></td>
+                        <td class="boardCell" id="3"></td>
+                        <td class="boardCell" id="4"></td>
+                        <td class="boardCell" id="5"></td>
+                    </tr>
+                    <tr class="ROW2">
+                        <td class="boardCell" id="6"></td>
+                        <td class="boardCell" id="7"></td>
+                        <td class="boardCell" id="8"></td>
+                        <td class="boardCell" id="9"></td>
+                        <td class="boardCell" id="10"></td>
+                    </tr>
+                    <tr class="ROW3">
+                        <td class="boardCell" id="11"></td>
+                        <td class="boardCell" id="12"></td>
+                        <td class="boardCell" id="13"></td>
+                        <td class="boardCell" id="14"></td>
+                        <td class="boardCell" id="15"></td>
+                    </tr>
+                    <tr class="ROW4">
+                        <td class="boardCell" id="16"></td>
+                        <td class="boardCell" id="17"></td>
+                        <td class="boardCell" id="18"></td>
+                        <td class="boardCell" id="19"></td>
+                        <td class="boardCell" id="20"></td>
+                    </tr>
+                    <tr class="ROW5">
+                        <td class="boardCell" id="21"></td>
+                        <td class="boardCell" id="22"></td>
+                        <td class="boardCell" id="23"></td>
+                        <td class="boardCell" id="24"></td>
+                        <td class="boardCell" id="25"></td>
+                    </tr>
+                </table>
+            </div>
+            <button id="win">force win</button>
+        </div>
+        <div style="display: none;" class="menuContainer">
+            <button id="playAgain" class="menuButton" style="width: 20rem;">PLAY AGAIN</button>
+            <button id="quit" class="menuButton" style="width: 20rem;">QUIT</button>
+        </div>                                                               
+    </body>
+    <script type="module" src="./js/tileGame.js"></script>
+</html>

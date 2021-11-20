@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials') %>
+<body style = "background-color:#5D70C2; margin: 5rem 5rem;">
+    <button id="cancelRoom">
+      <span class="material-icons md-light md-24">arrow_back</span>
+    </button>  
+    <div class="createDiv">
+      <h2>Share this room code with a friend:</h2>
+      <h1 id="room"><%= id %></h1>
+      <div class="rotateSquare"></div>
+      <h3 id="players">Waiting for players...  1/2</h2>
+    </div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  let back = document.getElementById('cancelRoom');
+  let room = document.getElementById('room').innerText;
+  let players = document.getElementById('players').innerText;
+  let waitMsg = players.slice(0, players.length-3);
+
+  var socket = io('http://localhost:3000');
+  socket.emit('create-room', room);
+
+  back.addEventListener('click', ()=>{
+    socket.emit('leave-room', room);
+    location.href = '/room';
+  });
+
+  let playerCount = 1;
+  setInterval( ()=>{
+
+    //Retrieves the player count
+    socket.emit("check-player-count", room);
+    socket.on("player-count", (count)=>{
+      playerCount = count;
+    });
+
+    // Update the player count
+    document.getElementById('players').innerText = waitMsg + playerCount + "/2";
+    
+    if(playerCount === 2){
+      console.log("ready to play")
+    }
+  }, 500);
+
+</script>
+</html>

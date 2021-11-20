@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tile Runner</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/animated.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+      @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@700&family=Josefin+Sans:wght@700&family=Viga&display=swap');
+      </style>
+</head>
+<body>
+    <h1 class="title">TILE RUNNER</h1>
+    <div class="menuContainer" style="bottom: none; top: 30%;">
+      <button id="join" class="menuButton">JOIN ROOM</button>
+      <button id="create" class="menuButton">CREATE ROOM</button>
+    </div>
+    <button class="cancelRoom">
+      <span class="material-icons md-light md-24">arrow_back</span>
+    </button>  
+    <div class="joinDiv">
+      <h2>Please enter the shared room code</h2>
+      <form class="roomForm">
+        <input id="userRoom" type="text" placeholder="ROOM CODE" value="" class="roomInput">
+        <input type="button" value="SUBMIT" class="roomSubmit" onclick="searchForRoom()">
+      </form> 
+    </div>
+    <div class="createDiv">
+      <h2>Share this ROOM CODE with a friend:</h2>
+      <h1 class="roomCode">12345</h1>
+      <h3 class="waiting">Waiting for players...</h2>
+    </div>
+    <div class="rotateSquare"></div>
+    <div class="roomWarning">
+      <span class="material-icons md-light">error_outline</span>
+      <p>We didn't recognize the Room PIN. Please try again!</p>
+    </div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  let container = document.getElementsByClassName("menuContainer")[0];
+  let join = document.getElementById("join");
+  let create = document.getElementById("create");
+  let title = document.getElementsByClassName('title')[0];
+  let back = document.getElementsByClassName('cancelRoom')[0];
+  let joinDiv = document.getElementsByClassName('joinDiv')[0];
+  let createDiv = document.getElementsByClassName('createDiv')[0];
+  let loader = document.getElementsByClassName('rotateSquare')[0];
+  let body = document.getElementsByTagName('body')[0];
+  let form = document.getElementsByTagName('form')[0];
+  let warning = document.getElementsByClassName('roomWarning')[0];
+  let onSubmit = document.getElementsByClassName('roomSubmit')[0];
+  let roomCode = document.getElementsByClassName('roomCode')[0];
+  
+  join.addEventListener('click', ()=>{
+    container.style.display = 'none';
+    title.style.display = 'none'; 
+    loader.style = "display: none;";
+    joinDiv.style = 'display: block;';
+    back.style = "display: block";
+    body.style = "background-color:#416E9E";
+  });
+
+  create.addEventListener('click', ()=>{
+    container.style.display = 'none';
+    title.style.display = 'none';
+    createDiv.style = "display: block;";
+    back.style = "display: block";
+    loader.style = "display: block";
+    body.style = "background-color:#5D70C2";
+    body.append(loader);
+    roomCode.innerHTML = generateCode();
+
+    socket.on("create room", (room, cb) =>{
+      socket.join(room);
+      cb();
+    });
+  });
+
+  back.addEventListener('click', ()=>{
+    container.style.display = 'block';
+    title.style.display = 'block';
+    createDiv.style = "display: none;";
+    joinDiv.style = "display: none;";
+    back.style = "display: none;";
+    loader.style = "display: none;";
+    body.style = "background-color: #11ce98;";
+  });
+
+  onSubmit.addEventListener('click', () => {
+    let input = document.getElementById('userRoom');
+    let userInput = input.value;
+
+    let database = ['12345']; // searches if room exists
+
+    for(let room of database){
+        if(userInput === room){
+          location.href = '/room/'+room;
+        } else {
+          input.style = "border: 2px red solid;";
+          warning.style = "display: block;"
+          warning.classList.add('animateWarning');
+          setTimeout(()=>{
+            warning.classList.remove('animateWarning');
+            warning.style = "display: none;"
+          },3500);
+        }
+    }
+  });
+
+  function generateCode(id){
+    let room = "";
+    while(room.length < 5){
+      let isLetter = Math.floor(Math.random()*2);
+      if(isLetter){
+        // Picks a random upper case letter
+        let letter = Math.floor(Math.random()*25) + 65;
+        room += String.fromCharCode(letter);
+      } else {
+        // Picks a random number between 0 to 9
+        let num = Math.floor(Math.random()*9);
+        room += num;
+      }
+    } 
+    return room;
+  }
+
+  var socket = io('http://localhost:3000');
+
+</script>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials') %>
+<body style="background-color:#416E9E; margin: 5rem 5rem;">
+    <button id="cancelRoom">
+      <span class="material-icons md-light md-24">arrow_back</span>
+    </button>  
+    <div class="joinDiv">
+      <h2>Please enter the shared room code!</h2>
+      <div style="text-align: center;">
+        <form>
+          <input id="userRoom" type="text" placeholder="ROOM CODE" value="" class="roomInput">
+          <input id="roomSubmit" type="button" value="SUBMIT">
+        </form> 
+      </div>
+      
+    </div>
+    <div class="roomWarning">
+      <span class="material-icons md-light">error_outline</span>
+      <p>We didn't recognize the Room PIN. Please try again!</p>
+    </div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  let back = document.getElementById('cancelRoom');
+  let onSubmit = document.getElementById('roomSubmit');
+  let warning = document.getElementsByClassName('roomWarning')[0];
+  
+
+  back.addEventListener('click', ()=>{
+    location.href = "/room";
+  });
+
+  onSubmit.addEventListener('click', () => {
+    let input = document.getElementById('userRoom');
+    let userInput = input.value.toUpperCase();
+    var socket = io('http://localhost:3000');
+    socket.emit('check-room', userInput);
+    socket.on("join-room", (roomExists, error) =>{ // add error for full room
+      if(roomExists && error === ""){
+        location.href = '/room/'+userInput;
+      } else if(roomExists && error !== ""){
+        input.style = "border: 2px red solid;";
+        warning.style = "display: block;";
+     
+        for(let child of warning.children){
+          console.log(child.tagName)
+          if(child.tagName == 'P') child.innerHTML = error;
+        }
+        warning.classList.add('animateWarning');
+        setTimeout(()=>{
+          warning.classList.remove('animateWarning');
+          warning.style = "display: none;"
+        },3500);
+      } else {
+        input.style = "border: 2px red solid;";
+        warning.style = "display: block;"
+        for(let child of warning.children){
+          console.log(child.tagName)
+          if(child.tagName == 'P') {
+            child.innerHTML = "We didn't recognize"
+            +" the Room PIN. Please try again!";
+          }
+        }
+        warning.classList.add('animateWarning');
+        setTimeout(()=>{
+          warning.classList.remove('animateWarning');
+          warning.style = "display: none;"
+        },3500);
+      }
+    });
+  });
+</script>
+</html>

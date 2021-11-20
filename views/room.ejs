@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials') %>
+<body>
+    <div class="menuContainer">
+      <h1 class="title">TILE RUNNER</h1>
+      <div style="display: inline-grid;">
+        <button id="join" class="menuButton">JOIN ROOM</button>
+        <button id="create" class="menuButton">CREATE ROOM</button>
+      </div>
+    </div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  let container = document.getElementsByClassName("menuContainer")[0];
+  let join = document.getElementById("join");
+  let create = document.getElementById("create");
+  
+  join.addEventListener('click', ()=>{
+    location.href = "/room/join"
+  });
+
+  create.addEventListener('click', ()=>{
+    let room = generateRoom();
+    location.href = "/room/" + room;
+  });
+
+  function generateRoom(){
+    let room = "";
+    while(room.length < 5){
+      let isLetter = Math.floor(Math.random()*2);
+      if(isLetter){
+        // Picks a random upper case letter
+        let letter = Math.floor(Math.random()*25) + 65;
+        room += String.fromCharCode(letter);
+      } else {
+        // Picks a random number between 0 to 9
+        let num = Math.floor(Math.random()*9);
+        room += num;
+      }
+    } 
+    return room;
+  }
+
+  var socket = io('http://localhost:3000');
+</script>
+</html>
