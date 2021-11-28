@@ -3,7 +3,7 @@ import StopWatch from './stopWatch.js';
 
 const MATCH_SIZE = 3;
 
-class TileGame {
+export default class TileGame {
     constructor() {
         this.game = null;
         this.inProgress = false;
@@ -28,6 +28,13 @@ class TileGame {
     resume() {
         this.inProgress = true;
         this.timer.start();
+    }
+
+    //Copies the board of another game
+    copyBoard(newBoard){
+        if(newBoard instanceof Board){
+            this.game = newBoard;
+        }
     }
 
     //Checks if the player has reached matched all colors in the 3 x 3 grid.
@@ -256,29 +263,53 @@ class TileGame {
         let interval = setInterval(() => {
             this.updateBoard();
             if (this.isFinished()) {
-                console.log("Game won!")
                 this.timer.stop();
                 this.displayWin();
                 clearInterval(interval);
             }
         }, 10);
     }
+
+    //Starts the a copy of the game's board [multiplayer]
+    startWCopy(board) {
+        let counter = document.getElementById("counter");
+        let container = document.getElementById("countContainer");
+        container.style.display = "block";
+        let num = Number.parseInt(counter.innerHTML);
+
+        let countInterval = setInterval(() => {
+            num--;
+            if (num === 0) {
+                clearInterval(countInterval);
+                container.style.display = "none";
+                this.createGame(board);
+                this.showGame();
+            } else {
+                document.getElementById("counter").innerHTML = num;
+            }
+        }, 1000);
+        return true;
+    }
+
+    //Creates a new game by using a copied board and starting a new timer
+    createWBoard(board) {
+        this.game = board;
+        this.match = this.generateMatch();
+        this.timer = new StopWatch();
+        let timerElement = document.getElementById("timer");
+        this.timer.start(timerElement);
+
+        this.displayMatch();
+        this.displayBoard();
+        
+        let interval = setInterval(() => {
+            this.updateBoard();
+            if (this.isFinished()) {
+                this.timer.stop();
+                this.displayWin();
+                clearInterval(interval);
+            }
+        }, 10);
+    }
+    
 }
-
-let forceWin = document.getElementById('win');
-let quit = document.getElementById('quit');
-let playAgain = document.getElementById('playAgain');
-
-let game = new TileGame();
-game.start();
-
-forceWin.addEventListener("click", ()=>{
-    game.forceWin();
-})
-playAgain.addEventListener('click', ()=>{
-    location.href = '/singleplayer';
-});
-
-quit.addEventListener('click', ()=>{
-    location.href = '/';
-});

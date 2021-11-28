@@ -1,0 +1,547 @@
+@media screen and (max-width: 949px) {
+  .createDiv {
+    padding: 0 3rem 0 3rem;
+  }
+
+  .createDiv h2 {
+    font-size: 3em;
+  }
+}
+
+@media screen and (max-width: 890px) {
+  .createDiv h1 {
+    font-size: 6em;
+    padding: 1rem 0;
+  }
+
+  .createDiv h3 {
+    padding-top: 0;
+  }
+
+  .rotateSquare {
+    height: 2.5rem;
+    width: 2.5rem;
+    left: 50%;
+    margin-left: -2.15rem;
+    margin-top: 0;
+    bottom: 30vh;
+  }
+}
+
+@media screen and (max-width: 662px) {
+  .createDiv h1 {
+    font-size: 5em;
+    padding: 1rem 0;
+  }
+
+  .createDiv h2 {
+    font-size: 2.25rem;
+  }
+
+  .createDiv h3 {
+    font-size: 2rem;
+  }
+
+  .rotateSquare {
+    bottom: 37.5vh;
+  }
+}
+
+@media screen and (max-width: 561px) {
+  .createDiv {
+    padding: 0;
+    padding-top: 5vh;
+
+  }
+
+  .createDiv h1 {
+    font-size: 5em;
+    padding: 1rem 0;
+  }
+
+  .createDiv h2 {
+    font-size: 2.25rem;
+  }
+
+  .createDiv h3 {
+    font-size: 1.8rem;
+  }
+
+  .rotateSquare {
+    bottom: 25vh;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .createDiv {
+    padding-top: 10vh;
+  }
+
+  .rotateSquare {
+    bottom: 20vh;
+  }
+}
+
+@media screen and (max-width: 462px) {
+  .createDiv {
+    padding: 0;
+    padding-top: 3.5vh;
+
+  }
+
+  .createDiv h3 {
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .createDiv {
+    padding: 0;
+    padding-top: 5vh;
+
+  }
+
+  .createDiv h1 {
+    font-size: 5em;
+    padding: 1rem 0;
+  }
+
+  .createDiv h2 {
+    font-size: 2.25rem;
+  }
+
+  .createDiv h3 {
+    font-size: 1.8rem;
+  }
+}
+
+/* NEST HUB */
+@media screen and (width: 1024px) and (height:600px) {
+  .createDiv{
+    padding-top: 2vh;
+  }
+
+  .createDiv h1 {
+    font-size: 5.5em;
+    padding: 1rem 0;
+  }
+
+  .createDiv h2 {
+    font-size: 2.5rem;
+  }
+
+  .createDiv h3 {
+    font-size: 2rem;
+  }
+
+  .rotateSquare {
+    width: 3.5rem;
+    height: 3.5rem;
+    bottom: 15vh;
+  }
+}
+
+/* Galaxy Fold */
+@media screen and (width: 280px) and (height:653px) {
+  body {
+    all: unset;
+  }
+
+  .material-icons.md-24 { 
+    font-size: 3rem;
+  }
+
+  .createDiv{
+    padding-top: 10vh;
+  }
+
+  .createDiv h1 {
+    padding: 1rem 2rem;
+    font-size: 4rem;
+
+  }
+
+  .createDiv h2 {
+   padding: 0 2rem;
+   font-size: 2rem;
+  }
+
+  .createDiv h3 {
+    padding: 0 2rem;
+   font-size: 1.5rem;
+  }
+
+  .rotateSquare {
+    bottom: 10vh;
+    margin-left: -1.25rem;
+  }
+}
+
+/* Surface Duo */
+@media screen and (width: 540px) and (height:720px) {
+
+  .rotateSquare {
+    bottom: 10vh;
+    margin-left: -1.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+
+/* iPad */
+@media screen and (width: 768px) and (height:1024px) {
+  .createDiv{
+    padding-top: 8vh;
+  }
+
+  .rotateSquare {
+    bottom: 20vh;
+    margin-left: -2rem;
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+/* iPad */
+@media screen and (width: 768px) and (height:1024px) {
+  .createDiv{
+    padding-top: 8vh;
+  }
+
+  .rotateSquare {
+    bottom: 20vh;
+    margin-left: -2rem;
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+/* iPhone 6/7/8 Plus */
+@media screen and (width: 414px) and (height:736px) {
+  .createDiv {
+    padding-top: 1vh;;
+  }
+  .rotateSquare {
+    bottom: 10vh;
+    margin-left: -1.75rem;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+/* iPhone 6/7/8 */
+@media screen and (width: 375px) and (height:667px) {
+  .createDiv {
+    padding-top: .5vh;
+  }
+
+  .createDiv h1{
+    font-size: 4rem;
+  }
+  .createDiv h2{
+    font-size: 2rem;
+
+  }
+  .createDiv h3{
+    font-size: 1.8rem;
+  }
+
+  .rotateSquare {
+    bottom: 10vh;
+    margin-left: -1.75rem;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+/* iPhone 5/SE */
+@media screen and (width: 320px) and (height:568px) {
+  body {
+    all: unset;
+  }
+
+  .createDiv {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 12vh;
+  }
+
+  .createDiv h1{
+    font-size: 4rem;
+  }
+  .createDiv h2{
+    font-size: 1.8rem;
+
+  }
+  .createDiv h3{
+    font-size: 1.3rem;
+  }
+
+  .rotateSquare {
+    bottom: 10vh;
+    margin-left: -1.75rem;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+/* Pixel 2 XL */
+@media screen and (width: 411px) and (height:823px) {
+
+  .rotateSquare {
+    bottom: 10vh;
+    margin-left: -1.75rem;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+/* Pixel 2 */
+@media screen and (width: 411px) and (height:731px) {
+  .createDiv{
+    padding-top: 0;
+  }
+
+  .rotateSquare {
+    bottom: 10vh;
+    margin-left: -1.75rem;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+/* Galaxy S5*/
+@media screen and (width: 360px) and (height:640px) {
+  .createDiv{
+    padding-top: 1vh;
+  }
+
+  .createDiv h1{
+    font-size: 4rem;
+  }
+  .createDiv h2{
+    font-size: 1.8rem;
+
+  }
+  .createDiv h3{
+    font-size: 1.3rem;
+  }
+
+  .rotateSquare {
+    bottom: 10vh;
+    margin-left: -1.75rem;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+/* iPhone 4*/
+@media screen and (width: 320px) and (height:480px) {
+  body{
+    all:unset;
+  }
+
+  .createDiv{
+    padding-top: 5vh;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .createDiv h1{
+    font-size: 4rem;
+    padding: 0.25rem 0;
+  }
+  .createDiv h2{
+    font-size: 1.8rem;
+
+  }
+  .createDiv h3{
+    font-size: 1.3rem;
+  }
+
+  .material-icons.md-24 { 
+    font-size: 3rem;
+  }
+
+  .rotateSquare {
+    bottom: 10vh;
+    margin-left: -1.5rem;
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+/* iPad Mini*/
+@media screen and (width: 768px) and (height:1024px) {
+
+
+  .createDiv{
+    padding-top: 8vh;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .createDiv h1{
+    font-size: 6rem;
+
+  }
+  .createDiv h2{
+    font-size: 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+  }
+  .createDiv h3{
+    font-size: 2.5rem;
+  }
+
+  .material-icons.md-24 { 
+    font-size: 5rem;
+  }
+
+  .rotateSquare {
+    bottom: 15vh;
+    margin-left: -2.5rem;
+    width: 5rem;
+    height: 5rem;
+  }
+}
+
+/* Pixel 4*/
+@media screen and (width: 353px) and (height:745px) {
+  .createDiv{
+    padding-top: 2vh;
+  }
+
+  .createDiv h1{
+    font-size: 4rem;
+  }
+  .createDiv h2{
+    font-size: 2rem;
+
+  }
+  .createDiv h3{
+    font-size: 1.8rem;
+  }
+
+  .rotateSquare {
+    bottom: 15vh;
+    margin-left: -1.75rem;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+/* Galaxy Tab S4*/
+@media screen and (width: 712px) and (height:1138px) {
+  .createDiv{
+    padding-top: 10vh;
+  }
+
+  .createDiv h1{
+    font-size: 6rem;
+  }
+  .createDiv h2{
+    font-size: 3rem;
+
+  }
+  .createDiv h3{
+    font-size: 2.5rem;
+  }
+
+  .material-icons.md-24 { 
+    font-size: 5rem;
+  }
+
+  .rotateSquare {
+    bottom: 15vh;
+    margin-left: -2.5rem;
+    width: 5rem;
+    height: 5rem;
+  }
+}
+
+/* iPhone XR*/
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+   {
+    .title {
+      padding-top: 0vh;
+      font-size: 4.5rem;
+    }
+
+    .roomTitle {
+      margin-top: -2vh;
+    }
+
+    .centerMenu {
+      padding-top: 10vh;
+    }
+  
+    .menuButton {
+      width: 20rem;
+      font-size: 1.8rem;
+    }
+    
+    .loadContainer{
+      padding: 0 2rem;
+    }
+  
+    .createDiv{
+      padding-top: 1vh;
+    }
+  
+    .createDiv h1{
+      font-size: 5rem;
+    }
+    .createDiv h2{
+      font-size: 2.2rem;
+  
+    }
+    .createDiv h3{
+      font-size: 1.8rem;
+    }
+  
+    .material-icons.md-24 { 
+      font-size: 4rem;
+    }
+  
+    .rotateSquare {
+      bottom: 5vh;
+      margin-left: -2rem;
+      width: 4rem;
+      height: 4rem;
+    }
+
+    .joinDiv form {
+      width:  65vw;
+      box-sizing:content-box;
+    }
+
+    .joinDiv h2 {
+      padding: 5rem 2rem;
+      font-size: 2.4rem;
+    }
+
+    .roomInput {
+      width: 55vw;
+    }
+
+    #roomSubmit {
+      height:max-content;
+      /* padding: 0 2rem; */
+    }
+
+    #board {
+      margin-top: 25vh;
+      margin-left: 3.5vw;
+      margin-right: 3.5vw;
+      width: 90vw;
+    }
+
+    .boardCell{
+      border-radius: .7rem;
+    }
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tile Runner</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/animated.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@700&family=Josefin+Sans:wght@700&family=Viga&display=swap');
+        </style>
+  </head>
+<body style = "background-color:#ffc548; margin: 2rem 2rem;">
+    <div id="countContainer" style="display: none">
+        <p id="counter">3</p>
+    </div>
+    <div id="game" style="display: none; height: 42vh;">
+        <div>
+            <h1 id="finish" class="finished">Finished!</h1>
+            <h1 id="timer">00:00.00</h1>
+        </div>
+        <div class="matchSide">
+            <table id="match">
+                <tbody id="matchBody">
+                    <tr class="ROW1">
+                        <td class="matchCell"></td>
+                        <td class="matchCell"></td>
+                        <td class="matchCell"></td>
+                    </tr>
+                    <tr class="ROW2">
+                        <td class="matchCell"></td>
+                        <td class="matchCell"></td>
+                        <td class="matchCell"></td>
+                    </tr>
+                    <tr class="ROW3">
+                        <td class="matchCell"></td>
+                        <td class="matchCell"></td>
+                        <td class="matchCell"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> 
+        <div class="boardSide">
+            <table id="board">
+                <tr class="ROW1">
+                    <td class="boardCell" id="1"></td>
+                    <td class="boardCell" id="2"></td>
+                    <td class="boardCell" id="3"></td>
+                    <td class="boardCell" id="4"></td>
+                    <td class="boardCell" id="5"></td>
+                </tr>
+                <tr class="ROW2">
+                    <td class="boardCell" id="6"></td>
+                    <td class="boardCell" id="7"></td>
+                    <td class="boardCell" id="8"></td>
+                    <td class="boardCell" id="9"></td>
+                    <td class="boardCell" id="10"></td>
+                </tr>
+                <tr class="ROW3">
+                    <td class="boardCell" id="11"></td>
+                    <td class="boardCell" id="12"></td>
+                    <td class="boardCell" id="13"></td>
+                    <td class="boardCell" id="14"></td>
+                    <td class="boardCell" id="15"></td>
+                </tr>
+                <tr class="ROW4">
+                    <td class="boardCell" id="16"></td>
+                    <td class="boardCell" id="17"></td>
+                    <td class="boardCell" id="18"></td>
+                    <td class="boardCell" id="19"></td>
+                    <td class="boardCell" id="20"></td>
+                </tr>
+                <tr class="ROW5">
+                    <td class="boardCell" id="21"></td>
+                    <td class="boardCell" id="22"></td>
+                    <td class="boardCell" id="23"></td>
+                    <td class="boardCell" id="24"></td>
+                    <td class="boardCell" id="25"></td>
+                </tr>
+            </table>
+        </div>
+        <button id="win">force win</button>
+    </div>
+    <div style="display: none;" class="menuContainer">
+        <button id="playAgain" class="menuButton" style="width: 20rem;">PLAY AGAIN</button>
+        <button id="quit" class="menuButton" style="width: 20rem;">QUIT</button>
+    </div> 
+    <div id="room" style="display: none;"><%= id %></div>                                                       
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<!-- <script type="module" src="../../js/tileGame.js"></script>   -->
+<script type="module" src="../../js/multiplayer.js"></script>  
+<script>
+    let quit = document.getElementById('quit');
+    let room = document.getElementById('room').innerText;
+    let playAgain = document.getElementById('playAgain');
+    playAgain.addEventListener('click', ()=>{
+        location.href = '/room/'+room;
+    });
+    quit.addEventListener('click', ()=>{
+        location.href = '/';
+    });
+</script>
+</html>

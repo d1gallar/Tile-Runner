@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <%- include('partials') %>
-    <body style="margin: 2rem 2rem;">
+    <body>
         <div id="countContainer" style="display: none">
             <p id="counter">3</p>
         </div>
@@ -77,5 +77,16 @@
             <button id="quit" class="menuButton" style="width: 20rem;">QUIT</button>
         </div>                                                               
     </body>
-    <script type="module" src="./js/tileGame.js"></script>
+    <script type="module" src="./js/singleplayer.js"></script>
+    <script>
+        let quit = document.getElementById('quit');
+        let playAgain = document.getElementById('playAgain');
+        quit.addEventListener('click', ()=>{
+            location.href = '/';
+        })
+
+        playAgain.addEventListener('click', ()=>{
+            location.href = '/singleplayer';
+        });
+    </script>
 </html>

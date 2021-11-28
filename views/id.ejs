@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('partials') %>
-<body style = "background-color:#5D70C2; margin: 5rem 5rem;">
+<body class="backBlue paddedBody">
     <button id="cancelRoom">
       <span class="material-icons md-light md-24">arrow_back</span>
     </button>  
@@ -19,8 +19,10 @@
   let players = document.getElementById('players').innerText;
   let waitMsg = players.slice(0, players.length-3);
 
-  var socket = io('http://localhost:3000');
-  socket.emit('create-room', room);
+  // var socket = io('http://localhost:3000');
+  const socket = io('http://192.168.1.121:3000/');
+  socket.emit('leave-all');
+  socket.emit('join-game-room', room);
 
   back.addEventListener('click', ()=>{
     socket.emit('leave-room', room);
@@ -38,11 +40,21 @@
 
     // Update the player count
     document.getElementById('players').innerText = waitMsg + playerCount + "/2";
-    
-    if(playerCount === 2){
-      console.log("ready to play")
-    }
-  }, 500);
+
+     // If two players are in the lobby, play the game
+    socket.on("full-lobby", (isReady) =>{
+      if(isReady) {
+        setTimeout(()=>{
+          location.href = '/room/'+room+'/play';
+        },100);
+      }
+    });
+
+    // If more than two players are in the room, display error
+    socket.on('error-full-lobby', (error) =>{
+        location.href = '/room/'+room+'/error';
+    });
+  }, 10);
 
 </script>
 </html>

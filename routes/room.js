@@ -13,4 +13,12 @@ router.get('/:id',(req, res) => {
   res.render("id", {id: req.params.id});
 });
 
+router.get('/:id/play',(req, res) => {
+  res.render('double', {id: req.params.id});
+});
+
+router.get('/:id/error',(req, res) => {
+  res.render('error');
+});
+
 module.exports = router;
